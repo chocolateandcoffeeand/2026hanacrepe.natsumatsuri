@@ -1,0 +1,788 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HANAcrepe 夏祭り店</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #fff8ee;
+      --paper: #fffdf8;
+      --brown: #5a3a2e;
+      --soft-brown: #8a6652;
+      --pink: #f4b8b8;
+      --pale-pink: #ffe1df;
+      --blue: #b9dce8;
+      --red: #d96b6b;
+      --yellow: #ffe7a8;
+      --line: rgba(90, 58, 46, 0.18);
+      --shadow: 0 16px 34px rgba(90, 58, 46, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--brown);
+      font-family: "Hiragino Maru Gothic ProN", "Yu Gothic", "Meiryo", system-ui, sans-serif;
+      line-height: 1.8;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(255, 231, 168, 0.48), transparent 32%),
+        linear-gradient(180deg, var(--cream), #fff0ef 54%, #fffaf1);
+    }
+
+    button, input, select {
+      font: inherit;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: min(100%, 520px);
+      min-height: 100vh;
+      margin: 0 auto;
+      background: rgba(255, 248, 238, 0.72);
+      box-shadow: 0 0 40px rgba(90, 58, 46, 0.08);
+      overflow: hidden;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      background: var(--cream);
+    }
+
+    .section {
+      padding: 34px 20px;
+    }
+
+    .intro {
+      margin: 0;
+      padding: 28px 24px 30px;
+      position: relative;
+      background: rgba(255, 253, 248, 0.72);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .kicker {
+      margin: 0 0 8px;
+      color: var(--soft-brown);
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      text-align: center;
+    }
+
+    h1, h2, h3, p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      font-size: clamp(2rem, 9vw, 3.1rem);
+      line-height: 1.18;
+      text-align: center;
+      letter-spacing: 0;
+      font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+      font-weight: 800;
+    }
+
+    h2 {
+      margin-bottom: 18px;
+      font-size: 1.56rem;
+      line-height: 1.4;
+      text-align: center;
+      letter-spacing: 0;
+      font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+      font-weight: 800;
+    }
+
+    h3 {
+      margin-bottom: 8px;
+      font-size: 1.04rem;
+      line-height: 1.5;
+      letter-spacing: 0;
+      font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+      font-weight: 700;
+    }
+
+    .lead {
+      margin-bottom: 14px;
+      color: var(--soft-brown);
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .copy {
+      margin-bottom: 0;
+      color: var(--soft-brown);
+      font-size: 0.96rem;
+    }
+
+    .actions {
+      display: grid;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .action-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .btn {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--brown);
+      background: var(--paper);
+      box-shadow: 0 8px 18px rgba(90, 58, 46, 0.08);
+      cursor: pointer;
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      background: var(--pale-pink);
+      border-color: rgba(90, 58, 46, 0.28);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .btn-primary {
+      color: #4a3026;
+      background: linear-gradient(180deg, #ffd6d4, #f4b8b8);
+      border-color: rgba(90, 58, 46, 0.2);
+      font-weight: 800;
+    }
+
+    .btn-brown {
+      color: #fffdf8;
+      background: var(--brown);
+      border-color: var(--brown);
+    }
+
+    .paper-card {
+      background: rgba(255, 253, 248, 0.94);
+      border: 1px solid var(--line);
+      border-radius: 0;
+      box-shadow: var(--shadow);
+    }
+
+    .section-image {
+      width: 100%;
+      height: auto;
+      background: var(--paper);
+    }
+
+    .quiz-heading-image {
+      width: min(100%, 720px);
+      margin: 0 auto 18px;
+      height: auto;
+      background: var(--paper);
+    }
+
+    .quiz {
+      padding: 24px 18px;
+    }
+
+    .progress {
+      margin-bottom: 14px;
+      color: var(--soft-brown);
+      font-size: 0.88rem;
+      text-align: center;
+    }
+
+    .question {
+      margin-bottom: 18px;
+      font-size: 1.22rem;
+      line-height: 1.55;
+      text-align: center;
+    }
+
+    .choices {
+      display: grid;
+      gap: 10px;
+    }
+
+    .choice {
+      width: 100%;
+      min-height: 58px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 0;
+      color: var(--brown);
+      text-align: left;
+      background: #fffdf8;
+      cursor: pointer;
+      transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+    }
+
+    .choice:hover,
+    .choice:focus-visible {
+      background: var(--pale-pink);
+      border-color: rgba(90, 58, 46, 0.3);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .result {
+      display: none;
+      padding: 24px 18px;
+      text-align: center;
+    }
+
+    .result.is-visible {
+      display: block;
+    }
+
+    .result-image-wrap {
+      margin: 0 auto 18px;
+      overflow: hidden;
+      background: #fff7f4;
+      box-shadow: var(--shadow);
+    }
+
+    .result-image {
+      width: 100%;
+    }
+
+    .image-fallback {
+      display: none;
+      padding: 44px 22px;
+      color: var(--soft-brown);
+      background: #fffdf8;
+      border: 1px solid var(--line);
+      border-radius: 0;
+    }
+
+    .image-fallback.is-visible {
+      display: block;
+    }
+
+    .article {
+      padding: 24px 20px;
+      color: #fffdf8;
+      background: linear-gradient(180deg, #6a483b, #54362b);
+      border-radius: 0;
+      box-shadow: var(--shadow);
+    }
+
+    .article h2,
+    .article p {
+      text-align: left;
+    }
+
+    .article p {
+      color: rgba(255, 253, 248, 0.86);
+    }
+
+    .article-visual {
+      width: 100%;
+      margin: 0 auto 18px;
+      box-shadow: 0 12px 24px rgba(34, 21, 17, 0.22);
+    }
+
+    .asset-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .asset-figure {
+      min-height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+      background: rgba(255, 253, 248, 0.92);
+      border: 1px solid var(--line);
+      border-radius: 0;
+    }
+
+    .asset-figure img {
+      max-height: 280px;
+      object-fit: contain;
+    }
+
+    .download-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .maker {
+      padding: 22px 18px;
+    }
+
+    .maker-controls {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .file-label,
+    .select-label {
+      display: grid;
+      gap: 6px;
+      color: var(--soft-brown);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    input[type="file"],
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 0;
+      color: var(--brown);
+      background: var(--paper);
+    }
+
+    canvas {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      display: block;
+      background: var(--cream);
+      box-shadow: inset 0 0 0 1px var(--line);
+    }
+
+    .note {
+      margin: 12px 0 0;
+      color: var(--soft-brown);
+      font-size: 0.86rem;
+      text-align: center;
+    }
+
+    footer {
+      padding: 32px 22px 40px;
+      color: var(--soft-brown);
+      text-align: center;
+    }
+
+    footer strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--brown);
+      font-size: 1.08rem;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (min-width: 560px) {
+      body {
+        padding: 28px 0;
+      }
+
+      .page {
+        border-radius: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <img class="hero-image" data-asset="hero" alt="HANAcrepe 夏祭り店のメインビジュアル">
+
+    <section class="intro" aria-labelledby="hero-title">
+      <p class="kicker">おはな畑 presents</p>
+      <h1 id="hero-title">HANAcrepe<br>夏祭り店</h1>
+      <p class="lead">今の気分にぴったりなクレープを、HANAとちょこなまがご案内します。</p>
+      <p class="copy">1日だけの小さな夏祭り。クレープ診断で遊んで、チョコの未来を少し考えて、夏祭り素材をお持ち帰りできます。</p>
+      <div class="actions" aria-label="ページ内メニュー">
+        <a class="btn btn-primary" href="#quiz">クレープ診断をはじめる</a>
+        <div class="action-row">
+          <a class="btn" href="#article">チョコの記事を読む</a>
+          <a class="btn" href="#gifts">夏祭りフレームを見る</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="今日できること">
+      <img class="section-image" data-asset="todayMenu" alt="今日できること。クレープ心理診断、おはなし、フレームの案内">
+    </section>
+
+    <section class="section" id="quiz" aria-labelledby="quiz-title">
+      <h2 id="quiz-title" class="hidden">クレープ心理診断</h2>
+      <img class="quiz-heading-image" data-asset="quizBanner" alt="クレープ心理診断。今のあなたにぴったりなクレープは？">
+      <div class="paper-card quiz" id="quizCard">
+        <p class="progress" id="progress">1 / 4</p>
+        <h3 class="question" id="questionText"></h3>
+        <div class="choices" id="choices"></div>
+      </div>
+
+      <div class="result" id="result" aria-live="polite">
+        <div class="result-image-wrap">
+          <img class="result-image" id="resultImage" alt="">
+          <div class="image-fallback" id="resultFallback"></div>
+        </div>
+        <h3 id="resultTitle"></h3>
+        <p class="copy">スクショしてお持ち帰りしてね。今日の気分のチョコクレープです。</p>
+        <div class="actions">
+          <button class="btn btn-primary" type="button" id="retryButton">もう一度診断する</button>
+          <a class="btn" href="#article">チョコの記事も読む</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="article" aria-labelledby="article-title">
+      <article class="article">
+        <img class="article-visual" data-asset="articleVisual" alt="チョコを愛しすぎた私が、チョコの未来を考えました">
+        <h2 id="article-title">チョコを愛しすぎた私が、チョコの未来を考えました</h2>
+        <p>大好きなチョコレートを、これからも大好きでいるために。児童労働やフェアトレード、カカオ農家さんのことを、HANAなりに調べて書きました。</p>
+        <a class="btn" id="articleLink" href="#" target="_blank" rel="noreferrer">記事を読む</a>
+      </article>
+    </section>
+
+    <section class="section" id="gifts" aria-labelledby="gifts-title">
+      <h2 id="gifts-title">夏祭り素材をお持ち帰り</h2>
+      <p class="copy">透過された夏祭りフレームをダウンロードしてお持ち帰りいただけます！SNSアイコンや写真と組み合わせて、記念画像づくりに使えます。</p>
+      <div class="asset-grid" aria-label="素材プレビュー">
+        <figure class="asset-figure"><img data-asset="frameTransparent" alt="夏祭りフレーム素材"></figure>
+      </div>
+      <div class="download-list">
+        <a class="btn" data-download="frameTransparent" download="hana-crepe-frame.png">夏祭りフレームをダウンロード</a>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="maker-title">
+      <h2 id="maker-title">顔はめ合成コーナー</h2>
+      <div class="paper-card maker">
+        <div class="maker-controls">
+          <label class="file-label">
+            アイコン画像を選ぶ
+            <input id="photoInput" type="file" accept="image/*">
+          </label>
+          <label class="select-label">
+            背景
+            <select id="backgroundSelect">
+              <option value="cream">淡いクリーム</option>
+              <option value="transparent">透明</option>
+            </select>
+          </label>
+        </div>
+        <canvas id="frameCanvas" width="1080" height="1350" aria-label="夏祭りフレーム合成プレビュー"></canvas>
+        <p class="note">画像はサーバーに送らず、このブラウザ内だけで合成します。</p>
+        <div class="actions">
+          <button class="btn btn-primary" type="button" id="downloadCanvas">完成画像をダウンロード</button>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <strong>1日限定 HANAcrepe 夏祭り店</strong>
+      甘いだけじゃない、チョコの未来も少しだけ考えるクレープ屋さん。
+    </footer>
+  </main>
+
+  <script>
+    // 画像差し替え場所
+    const ASSETS = {
+      hero: "images/banner.png",
+      todayMenu: "images/today-menu.png",
+      quizBanner: "images/quiz-banner.png",
+      hanaNormal: "images/hana-normal.png",
+      hanaCrepe: "images/hana-crepe.png",
+      hanaCooking: "images/hana-cooking.png",
+      choconamaNormal: "images/choconama-normal.png",
+      choconamaWave: "images/choconama-wave.png",
+      choconamaOpenArms: "images/choconama-open-arms.png",
+      frameTransparent: "images/frame-transparent.png",
+      crepeCards: {
+        reward: "images/card-reward.png",
+        caramel: "images/card-caramel.png",
+        milk: "images/card-milk.png",
+        strawberry: "images/card-strawberry.png",
+        bitterNight: "images/card-bitter-night.png",
+        adultBitter: "images/card-adult-bitter.png",
+        starBanana: "images/card-star-banana.png",
+        fruit: "images/card-fruit.png",
+        crunchy: "images/card-crunchy.png",
+        white: "images/card-white.png",
+        fairtrade: "images/card-fairtrade.png",
+        special: "images/card-special.png"
+      },
+      articleVisual: "images/chocolate-article.png"
+    };
+
+    // リンク差し替え場所
+    const LINKS = {
+      substackArticle: "https://example.com"
+    };
+
+    const RESULTS = {
+      reward: "まるごとごほうびチョコクレープ",
+      caramel: "冒険キャラメルチョコクレープ",
+      milk: "やさしさミルクチョコクレープ",
+      strawberry: "夏祭りいちごチョコクレープ",
+      bitterNight: "夜空のビターチョコクレープ",
+      adultBitter: "ほろにが大人チョコクレープ",
+      starBanana: "星花バナナチョコクレープ",
+      fruit: "おはな畑フルーツクレープ",
+      crunchy: "サクサク青春チョコクレープ",
+      white: "そっと寄り添うホワイトチョコクレープ",
+      fairtrade: "フェアトレードチョコクレープ",
+      special: "HANAスペシャル・愛しすぎチョコクレープ"
+    };
+
+    const QUESTIONS = [
+      {
+        text: "Q1. 今の気分に近いのは？",
+        choices: [
+          { label: "とにかく甘やかされたい", tags: ["reward", "milk", "special"] },
+          { label: "少し静かに落ち着きたい", tags: ["bitterNight", "adultBitter", "white"] },
+          { label: "わくわく楽しいことがしたい", tags: ["caramel", "strawberry", "crunchy"] },
+          { label: "やさしい気持ちで過ごしたい", tags: ["milk", "fairtrade", "fruit"] }
+        ]
+      },
+      {
+        text: "Q2. 惹かれる夏祭りの景色は？",
+        choices: [
+          { label: "にぎやかな屋台", tags: ["strawberry", "crunchy", "caramel"] },
+          { label: "夜空と花火", tags: ["bitterNight", "starBanana", "adultBitter"] },
+          { label: "灯りのともる帰り道", tags: ["white", "milk", "fairtrade"] },
+          { label: "友達や仲間と笑う時間", tags: ["fruit", "reward", "special"] }
+        ]
+      },
+      {
+        text: "Q3. 今日ほしい甘さは？",
+        choices: [
+          { label: "濃厚チョコ", tags: ["reward", "special", "adultBitter"] },
+          { label: "ほろにがチョコ", tags: ["adultBitter", "bitterNight", "fairtrade"] },
+          { label: "フルーツの甘酸っぱさ", tags: ["fruit", "strawberry", "starBanana"] },
+          { label: "まろやかミルク・ホワイト系", tags: ["milk", "white", "caramel"] }
+        ]
+      },
+      {
+        text: "Q4. 今のあなたに必要なのは？",
+        choices: [
+          { label: "ごほうび", tags: ["reward", "special", "white"] },
+          { label: "冒険", tags: ["caramel", "starBanana", "crunchy"] },
+          { label: "癒やし", tags: ["milk", "white", "bitterNight"] },
+          { label: "つながり", tags: ["fairtrade", "fruit", "strawberry"] }
+        ]
+      }
+    ];
+
+    const quizCard = document.getElementById("quizCard");
+    const questionText = document.getElementById("questionText");
+    const choices = document.getElementById("choices");
+    const progress = document.getElementById("progress");
+    const result = document.getElementById("result");
+    const resultImage = document.getElementById("resultImage");
+    const resultFallback = document.getElementById("resultFallback");
+    const resultTitle = document.getElementById("resultTitle");
+    const retryButton = document.getElementById("retryButton");
+    let step = 0;
+    let scores = {};
+
+    function setAssetImages() {
+      document.querySelectorAll("[data-asset]").forEach((image) => {
+        const key = image.dataset.asset;
+        if (ASSETS[key]) {
+          image.src = ASSETS[key];
+          image.onerror = () => {
+            image.hidden = true;
+          };
+        }
+      });
+
+      document.querySelectorAll("[data-download]").forEach((link) => {
+        const key = link.dataset.download;
+        link.href = ASSETS[key] || "#";
+      });
+
+      document.getElementById("articleLink").href = LINKS.substackArticle;
+    }
+
+    function renderQuestion() {
+      const question = QUESTIONS[step];
+      progress.textContent = `${step + 1} / ${QUESTIONS.length}`;
+      questionText.textContent = question.text;
+      choices.innerHTML = "";
+
+      question.choices.forEach((choice) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "choice";
+        button.textContent = choice.label;
+        button.setAttribute("aria-label", `${question.text} ${choice.label}`);
+        button.addEventListener("click", () => answer(choice.tags));
+        choices.appendChild(button);
+      });
+    }
+
+    function answer(tags) {
+      tags.forEach((tag) => {
+        scores[tag] = (scores[tag] || 0) + 1;
+      });
+
+      step += 1;
+      if (step < QUESTIONS.length) {
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function pickResult() {
+      if ((scores.special || 0) >= 3 && (scores.reward || 0) >= 2) {
+        return "special";
+      }
+
+      const keys = Object.keys(RESULTS).filter((key) => key !== "special");
+      return keys.reduce((winner, key) => {
+        return (scores[key] || 0) > (scores[winner] || 0) ? key : winner;
+      }, keys[0]);
+    }
+
+    function showResult() {
+      const key = pickResult();
+      const title = RESULTS[key];
+      quizCard.classList.add("hidden");
+      result.classList.add("is-visible");
+      resultTitle.textContent = title;
+      resultImage.alt = `${title}の診断結果カード`;
+      resultImage.src = ASSETS.crepeCards[key];
+      resultFallback.textContent = `${title}。画像を差し替えると、ここに診断カードが表示されます。`;
+      resultFallback.classList.remove("is-visible");
+      resultImage.hidden = false;
+      resultImage.onerror = () => {
+        resultImage.hidden = true;
+        resultFallback.classList.add("is-visible");
+      };
+      result.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function resetQuiz() {
+      step = 0;
+      scores = {};
+      quizCard.classList.remove("hidden");
+      result.classList.remove("is-visible");
+      renderQuestion();
+      quizCard.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    const canvas = document.getElementById("frameCanvas");
+    const ctx = canvas.getContext("2d");
+    const photoInput = document.getElementById("photoInput");
+    const backgroundSelect = document.getElementById("backgroundSelect");
+    const downloadCanvas = document.getElementById("downloadCanvas");
+    let userImage = null;
+    const frameImage = new Image();
+
+    function drawCoverImage(image, x, y, width, height) {
+      const ratio = Math.max(width / image.width, height / image.height);
+      const sw = width / ratio;
+      const sh = height / ratio;
+      const sx = (image.width - sw) / 2;
+      const sy = (image.height - sh) / 2;
+      ctx.drawImage(image, sx, sy, sw, sh, x, y, width, height);
+    }
+
+    function drawCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      if (backgroundSelect.value === "cream") {
+        ctx.fillStyle = "#fff8ee";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
+
+      if (userImage) {
+        ctx.save();
+        const x = 220;
+        const y = 340;
+        const size = 640;
+        const radius = 80;
+        ctx.beginPath();
+        ctx.moveTo(x + radius, y);
+        ctx.arcTo(x + size, y, x + size, y + size, radius);
+        ctx.arcTo(x + size, y + size, x, y + size, radius);
+        ctx.arcTo(x, y + size, x, y, radius);
+        ctx.arcTo(x, y, x + size, y, radius);
+        ctx.closePath();
+        ctx.clip();
+        drawCoverImage(userImage, x, y, size, size);
+        ctx.restore();
+      } else {
+        ctx.fillStyle = "rgba(255, 253, 248, 0.86)";
+        ctx.fillRect(220, 340, 640, 640);
+        ctx.fillStyle = "#8a6652";
+        ctx.textAlign = "center";
+        ctx.font = "48px sans-serif";
+        ctx.fillText("ここに画像が入ります", 540, 680);
+      }
+
+      if (frameImage.complete && frameImage.naturalWidth) {
+        ctx.drawImage(frameImage, 0, 0, canvas.width, canvas.height);
+      }
+    }
+
+    function loadUserImage(file) {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        const image = new Image();
+        image.onload = () => {
+          userImage = image;
+          drawCanvas();
+        };
+        image.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    photoInput.addEventListener("change", (event) => {
+      loadUserImage(event.target.files[0]);
+    });
+
+    backgroundSelect.addEventListener("change", drawCanvas);
+
+    downloadCanvas.addEventListener("click", () => {
+      const link = document.createElement("a");
+      link.download = "hana-crepe-natsumatsuri.png";
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    });
+
+    frameImage.onload = drawCanvas;
+    frameImage.onerror = drawCanvas;
+    frameImage.src = ASSETS.frameTransparent;
+
+    retryButton.addEventListener("click", resetQuiz);
+    setAssetImages();
+    renderQuestion();
+    drawCanvas();
+  </script>
+</body>
+</html>
