@@ -1,788 +1,875 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>HANAcrepe 夏祭り店</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HANAcrepe 夏祭り店 | オカンと楽しむSubstack夏祭り</title>
+  <meta name="description" content="HANAcrepe 夏祭り店。4問のクレープ心理診断、チョコの未来についてのSubstack記事、夏祭りフレーム素材を楽しめる1日限定LP。" />
+  <meta property="og:title" content="HANAcrepe 夏祭り店" />
+  <meta property="og:description" content="クレープ診断をして、あなたの夏祭りクレープカードをお持ち帰り。" />
   <style>
     :root {
-      --cream: #fff8ee;
-      --paper: #fffdf8;
-      --brown: #5a3a2e;
-      --soft-brown: #8a6652;
-      --pink: #f4b8b8;
-      --pale-pink: #ffe1df;
-      --blue: #b9dce8;
-      --red: #d96b6b;
-      --yellow: #ffe7a8;
-      --line: rgba(90, 58, 46, 0.18);
-      --shadow: 0 16px 34px rgba(90, 58, 46, 0.12);
+      --cream: #fff7e8;
+      --paper: #fffdf7;
+      --pink: #eeb6bf;
+      --pink-soft: #f8dce0;
+      --brown: #5c3f34;
+      --brown-soft: #9b705f;
+      --sky: #b9ddea;
+      --sky-soft: #e5f4f7;
+      --mint: #dbeacd;
+      --line: rgba(92, 63, 52, .22);
+      --shadow: 0 18px 38px rgba(92, 63, 52, .13);
+      --radius: 8px;
     }
 
     * { box-sizing: border-box; }
 
     html {
       scroll-behavior: smooth;
+      background: var(--cream);
     }
 
     body {
       margin: 0;
       color: var(--brown);
-      font-family: "Hiragino Maru Gothic ProN", "Yu Gothic", "Meiryo", system-ui, sans-serif;
-      line-height: 1.8;
+      font-family: "Hiragino Sans", "Yu Gothic", "YuGothic", "Noto Sans JP", system-ui, sans-serif;
+      line-height: 1.75;
       background:
-        radial-gradient(circle at 20% 0%, rgba(255, 231, 168, 0.48), transparent 32%),
-        linear-gradient(180deg, var(--cream), #fff0ef 54%, #fffaf1);
+        radial-gradient(circle at 18% 8%, rgba(238, 182, 191, .38) 0 9rem, transparent 9.4rem),
+        radial-gradient(circle at 92% 22%, rgba(185, 221, 234, .42) 0 8rem, transparent 8.5rem),
+        linear-gradient(180deg, #fff8e9 0%, #fffaf1 38%, #f8edf0 100%);
+      overflow-x: hidden;
     }
 
-    button, input, select {
-      font: inherit;
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+    button, input, select { font: inherit; }
+
+    .skip-link {
+      position: fixed;
+      left: 12px;
+      top: 12px;
+      z-index: 99;
+      transform: translateY(-140%);
+      background: var(--brown);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 6px;
     }
 
-    button, a {
-      -webkit-tap-highlight-color: transparent;
-    }
+    .skip-link:focus { transform: translateY(0); }
 
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .page {
-      width: min(100%, 520px);
-      min-height: 100vh;
+    .wrap {
+      width: min(100%, 760px);
       margin: 0 auto;
-      background: rgba(255, 248, 238, 0.72);
-      box-shadow: 0 0 40px rgba(90, 58, 46, 0.08);
-      overflow: hidden;
+      padding: 0 18px;
     }
 
-    .hero-image {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      background: var(--cream);
-    }
-
-    .section {
-      padding: 34px 20px;
-    }
-
-    .intro {
-      margin: 0;
-      padding: 28px 24px 30px;
+    .hero {
       position: relative;
-      background: rgba(255, 253, 248, 0.72);
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
+      min-height: 96svh;
+      display: grid;
+      align-items: end;
+      padding: 18px 0 34px;
+      isolation: isolate;
     }
 
-    .kicker {
-      margin: 0 0 8px;
-      color: var(--soft-brown);
-      font-size: 0.82rem;
-      letter-spacing: 0.06em;
-      text-align: center;
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255, 247, 232, .12) 0%, rgba(255, 247, 232, .32) 42%, rgba(255, 247, 232, .94) 100%),
+        var(--hero-image) center top / cover no-repeat;
+      z-index: -2;
     }
 
-    h1, h2, h3, p {
-      margin-top: 0;
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 28%;
+      background: linear-gradient(180deg, transparent, var(--cream));
+      z-index: -1;
     }
+
+    .ticket {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      padding: 6px 12px;
+      margin-bottom: 12px;
+      border: 1px dashed rgba(92, 63, 52, .42);
+      border-radius: 999px;
+      background: rgba(255, 253, 247, .82);
+      box-shadow: 0 10px 24px rgba(92, 63, 52, .08);
+      font-size: 12px;
+      letter-spacing: .05em;
+    }
+
+    h1, h2, h3, p { margin: 0; }
 
     h1 {
-      margin-bottom: 10px;
-      font-size: clamp(2rem, 9vw, 3.1rem);
-      line-height: 1.18;
-      text-align: center;
+      font-family: "Yuji Syuku", "Hiragino Mincho ProN", "Yu Mincho", serif;
+      font-size: clamp(44px, 14vw, 86px);
+      line-height: .98;
+      font-weight: 500;
       letter-spacing: 0;
-      font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
-      font-weight: 800;
+      text-shadow: 0 2px 0 rgba(255, 255, 255, .74);
     }
 
-    h2 {
-      margin-bottom: 18px;
-      font-size: 1.56rem;
-      line-height: 1.4;
-      text-align: center;
-      letter-spacing: 0;
-      font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
-      font-weight: 800;
+    .hero-sub {
+      margin-top: 16px;
+      max-width: 29em;
+      font-size: 15px;
+      background: rgba(255, 253, 247, .78);
+      border: 1px solid rgba(255, 255, 255, .8);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+      box-shadow: 0 12px 28px rgba(92, 63, 52, .08);
+      backdrop-filter: blur(8px);
     }
 
-    h3 {
-      margin-bottom: 8px;
-      font-size: 1.04rem;
-      line-height: 1.5;
-      letter-spacing: 0;
-      font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
-      font-weight: 700;
+    .hero-sticker {
+      width: min(78vw, 430px);
+      margin: 0 0 14px;
+      border-radius: var(--radius);
+      box-shadow: 0 18px 34px rgba(92, 63, 52, .12);
+      transform: rotate(-1deg);
     }
 
-    .lead {
-      margin-bottom: 14px;
-      color: var(--soft-brown);
-      font-weight: 700;
-      text-align: center;
+    .character-row {
+      display: flex;
+      align-items: end;
+      gap: 8px;
+      margin-top: 12px;
     }
 
-    .copy {
-      margin-bottom: 0;
-      color: var(--soft-brown);
-      font-size: 0.96rem;
+    .character-row img {
+      width: min(28vw, 118px);
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 14px rgba(92, 63, 52, .12));
     }
 
-    .actions {
-      display: grid;
+    .hero-actions, .result-actions, .share-row {
+      display: flex;
+      flex-wrap: wrap;
       gap: 10px;
-      margin-top: 22px;
-    }
-
-    .action-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      margin-top: 18px;
     }
 
     .btn {
-      min-height: 48px;
+      min-height: 46px;
+      border: 1px solid rgba(92, 63, 52, .18);
+      border-radius: 999px;
+      padding: 10px 16px;
+      background: var(--paper);
+      color: var(--brown);
+      box-shadow: 0 10px 20px rgba(92, 63, 52, .11);
+      cursor: pointer;
+      text-decoration: none;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 12px 18px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      color: var(--brown);
-      background: var(--paper);
-      box-shadow: 0 8px 18px rgba(90, 58, 46, 0.08);
-      cursor: pointer;
-      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
     }
 
-    .btn:hover,
-    .btn:focus-visible {
-      background: var(--pale-pink);
-      border-color: rgba(90, 58, 46, 0.28);
-      transform: translateY(-1px);
-      outline: none;
-    }
+    .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+    .btn:focus-visible { outline: 3px solid rgba(185, 221, 234, .92); outline-offset: 2px; }
 
-    .btn-primary {
-      color: #4a3026;
-      background: linear-gradient(180deg, #ffd6d4, #f4b8b8);
-      border-color: rgba(90, 58, 46, 0.2);
-      font-weight: 800;
-    }
-
-    .btn-brown {
-      color: #fffdf8;
+    .btn.primary {
       background: var(--brown);
-      border-color: var(--brown);
+      color: #fffaf0;
+      border-color: transparent;
     }
 
-    .paper-card {
-      background: rgba(255, 253, 248, 0.94);
-      border: 1px solid var(--line);
-      border-radius: 0;
+    .btn.blue { background: var(--sky-soft); }
+    .btn.pink { background: #fff0f2; }
+
+    .section {
+      padding: 54px 0;
+      position: relative;
+    }
+
+    .section.soft-blue {
+      background: linear-gradient(180deg, rgba(229, 244, 247, .78), rgba(255, 253, 247, .2));
+      border-block: 1px solid rgba(92, 63, 52, .08);
+    }
+
+    .label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--brown-soft);
+      font-size: 12px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .label::before {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: var(--pink);
+    }
+
+    h2 {
+      font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+      font-size: clamp(28px, 8vw, 44px);
+      line-height: 1.2;
+      font-weight: 500;
+    }
+
+    .lead {
+      margin-top: 12px;
+      font-size: 15px;
+      color: rgba(92, 63, 52, .86);
+    }
+
+    .paper {
+      margin-top: 22px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.34) 0 1px, transparent 1px 28px),
+        linear-gradient(180deg, rgba(255,255,255,.28) 0 1px, transparent 1px 28px),
+        rgba(255, 253, 247, .92);
+      border: 1px solid rgba(92, 63, 52, .14);
+      border-radius: var(--radius);
       box-shadow: var(--shadow);
+      padding: 18px;
     }
 
-    .section-image {
+    .quiz-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .quiz-banner {
       width: 100%;
-      height: auto;
-      background: var(--paper);
-    }
-
-    .quiz-heading-image {
-      width: min(100%, 720px);
-      margin: 0 auto 18px;
-      height: auto;
-      background: var(--paper);
-    }
-
-    .quiz {
-      padding: 24px 18px;
+      margin: 18px 0 0;
+      border-radius: var(--radius);
+      border: 1px solid rgba(92, 63, 52, .12);
+      box-shadow: 0 12px 26px rgba(92, 63, 52, .09);
     }
 
     .progress {
-      margin-bottom: 14px;
-      color: var(--soft-brown);
-      font-size: 0.88rem;
-      text-align: center;
+      flex: 1;
+      height: 9px;
+      border-radius: 999px;
+      background: rgba(92, 63, 52, .12);
+      overflow: hidden;
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--pink), var(--sky));
+      border-radius: inherit;
+      transition: width .26s ease;
+    }
+
+    .count {
+      min-width: 58px;
+      text-align: right;
+      font-size: 13px;
+      color: var(--brown-soft);
     }
 
     .question {
-      margin-bottom: 18px;
-      font-size: 1.22rem;
-      line-height: 1.55;
-      text-align: center;
+      font-size: 21px;
+      line-height: 1.45;
+      font-weight: 700;
     }
 
     .choices {
       display: grid;
       gap: 10px;
+      margin-top: 16px;
     }
 
     .choice {
       width: 100%;
       min-height: 58px;
-      padding: 14px 16px;
-      border: 1px solid var(--line);
-      border-radius: 0;
-      color: var(--brown);
       text-align: left;
-      background: #fffdf8;
+      border: 1px solid rgba(92, 63, 52, .16);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .72);
+      color: var(--brown);
+      padding: 12px 14px;
       cursor: pointer;
-      transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+      box-shadow: 0 8px 16px rgba(92, 63, 52, .06);
     }
 
-    .choice:hover,
-    .choice:focus-visible {
-      background: var(--pale-pink);
-      border-color: rgba(90, 58, 46, 0.3);
-      transform: translateY(-1px);
-      outline: none;
+    .choice:hover {
+      background: #fff3f5;
+      border-color: rgba(238, 182, 191, .75);
     }
 
     .result {
       display: none;
-      padding: 24px 18px;
-      text-align: center;
+      margin-top: 22px;
     }
 
-    .result.is-visible {
-      display: block;
-    }
+    .result.show { display: block; }
 
-    .result-image-wrap {
-      margin: 0 auto 18px;
-      overflow: hidden;
-      background: #fff7f4;
+    .result-card {
+      background: var(--paper);
+      border: 1px solid rgba(92, 63, 52, .14);
+      border-radius: var(--radius);
+      padding: 12px;
       box-shadow: var(--shadow);
     }
 
-    .result-image {
+    .result-card img {
       width: 100%;
+      border-radius: 6px;
+      background: #fff7ed;
+      border: 1px solid rgba(92, 63, 52, .1);
     }
 
-    .image-fallback {
-      display: none;
-      padding: 44px 22px;
-      color: var(--soft-brown);
-      background: #fffdf8;
-      border: 1px solid var(--line);
-      border-radius: 0;
+    .result-copy {
+      margin-top: 14px;
+      display: grid;
+      gap: 8px;
     }
 
-    .image-fallback.is-visible {
-      display: block;
+    .result-name {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.4;
     }
 
     .article {
-      padding: 24px 20px;
-      color: #fffdf8;
-      background: linear-gradient(180deg, #6a483b, #54362b);
-      border-radius: 0;
-      box-shadow: var(--shadow);
-    }
-
-    .article h2,
-    .article p {
-      text-align: left;
-    }
-
-    .article p {
-      color: rgba(255, 253, 248, 0.86);
+      display: grid;
+      gap: 16px;
     }
 
     .article-visual {
+      overflow: hidden;
+      border-radius: var(--radius);
+      border: 1px solid rgba(92, 63, 52, .14);
+      background: var(--paper);
+    }
+
+    .article-visual img {
       width: 100%;
-      margin: 0 auto 18px;
-      box-shadow: 0 12px 24px rgba(34, 21, 17, 0.22);
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
     }
 
-    .asset-grid {
+    .goodies {
       display: grid;
-      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .goodie {
+      background: rgba(255, 253, 247, .82);
+      border: 1px solid rgba(92, 63, 52, .14);
+      border-radius: var(--radius);
+      padding: 12px;
+      display: grid;
+      grid-template-columns: 96px 1fr;
       gap: 12px;
-      align-items: stretch;
-    }
-
-    .asset-figure {
-      min-height: 220px;
-      display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 14px;
-      background: rgba(255, 253, 248, 0.92);
-      border: 1px solid var(--line);
-      border-radius: 0;
     }
 
-    .asset-figure img {
-      max-height: 280px;
-      object-fit: contain;
+    .goodie img {
+      border-radius: 6px;
+      border: 1px solid rgba(92, 63, 52, .1);
+      background: #fff;
+      aspect-ratio: 1;
+      object-fit: cover;
     }
 
-    .download-list {
+    .goodie h3 {
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    .goodie p {
+      font-size: 13px;
+      color: rgba(92, 63, 52, .76);
+      margin-top: 4px;
+    }
+
+    .composer {
+      display: grid;
+      gap: 14px;
+    }
+
+    .controls {
       display: grid;
       gap: 10px;
-      margin-top: 18px;
     }
 
-    .maker {
-      padding: 22px 18px;
-    }
-
-    .maker-controls {
-      display: grid;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .file-label,
-    .select-label {
+    .field {
       display: grid;
       gap: 6px;
-      color: var(--soft-brown);
-      font-size: 0.9rem;
-      font-weight: 700;
+      font-size: 13px;
+      color: var(--brown-soft);
     }
 
-    input[type="file"],
-    select {
+    .field input, .field select {
       width: 100%;
-      padding: 12px;
-      border: 1px solid var(--line);
-      border-radius: 0;
+      min-height: 44px;
+      border: 1px solid rgba(92, 63, 52, .18);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.72);
       color: var(--brown);
-      background: var(--paper);
+      padding: 8px 10px;
+    }
+
+    .canvas-shell {
+      background: #fff;
+      border: 1px solid rgba(92, 63, 52, .14);
+      border-radius: var(--radius);
+      padding: 10px;
+      box-shadow: 0 10px 24px rgba(92, 63, 52, .09);
     }
 
     canvas {
       width: 100%;
       aspect-ratio: 4 / 5;
+      border-radius: 6px;
+      background: #fff7ee;
       display: block;
-      background: var(--cream);
-      box-shadow: inset 0 0 0 1px var(--line);
     }
 
     .note {
-      margin: 12px 0 0;
-      color: var(--soft-brown);
-      font-size: 0.86rem;
+      margin-top: 10px;
+      font-size: 12px;
+      color: rgba(92, 63, 52, .68);
+    }
+
+    .footer {
+      padding: 44px 0 36px;
       text-align: center;
+      font-size: 12px;
+      color: rgba(92, 63, 52, .7);
     }
 
-    footer {
-      padding: 32px 22px 40px;
-      color: var(--soft-brown);
-      text-align: center;
+    .wash {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 45% 55% 58% 42%;
+      background: rgba(238, 182, 191, .28);
+      filter: blur(1px);
+      z-index: -1;
     }
 
-    footer strong {
-      display: block;
-      margin-bottom: 8px;
-      color: var(--brown);
-      font-size: 1.08rem;
-    }
+    .wash.one { right: -36px; top: 22px; background: rgba(185, 221, 234, .34); }
+    .wash.two { left: -48px; bottom: 12px; background: rgba(238, 182, 191, .28); }
 
-    .hidden {
-      display: none !important;
-    }
-
-    @media (min-width: 560px) {
-      body {
-        padding: 28px 0;
-      }
-
-      .page {
-        border-radius: 0;
-      }
+    @media (min-width: 680px) {
+      .wrap { padding-inline: 28px; }
+      .hero { min-height: 88vh; }
+      .article { grid-template-columns: .92fr 1.08fr; align-items: center; }
+      .composer { grid-template-columns: .9fr 1.1fr; align-items: start; }
+      .goodies { grid-template-columns: repeat(3, 1fr); }
+      .goodie { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <main class="page">
-    <img class="hero-image" data-asset="hero" alt="HANAcrepe 夏祭り店のメインビジュアル">
+  <a class="skip-link" href="#main">本文へ</a>
 
-    <section class="intro" aria-labelledby="hero-title">
-      <p class="kicker">おはな畑 presents</p>
-      <h1 id="hero-title">HANAcrepe<br>夏祭り店</h1>
-      <p class="lead">今の気分にぴったりなクレープを、HANAとちょこなまがご案内します。</p>
-      <p class="copy">1日だけの小さな夏祭り。クレープ診断で遊んで、チョコの未来を少し考えて、夏祭り素材をお持ち帰りできます。</p>
-      <div class="actions" aria-label="ページ内メニュー">
-        <a class="btn btn-primary" href="#quiz">クレープ診断をはじめる</a>
-        <div class="action-row">
-          <a class="btn" href="#article">チョコの記事を読む</a>
-          <a class="btn" href="#gifts">夏祭りフレームを見る</a>
+  <header class="hero" id="top">
+    <div class="wrap">
+      <img class="hero-sticker" id="heroSign" src="" alt="HANAcrepe オカンと楽しむSubstack夏祭りの看板" />
+      <div class="ticket">1日限定・Substack夏祭り</div>
+      <h1>HANAcrepe<br>夏祭り店</h1>
+      <p class="hero-sub">オカンと楽しむ夏祭りの片すみに、HANAの小さなクレープ屋さんが開店しました。4問で、今日のあなたにぴったりなクレープカードをお渡しします。</p>
+      <div class="character-row" aria-label="HANAcrepeのなかまたち">
+        <img id="hanaCrepeImage" src="" alt="クレープを持つHANA" />
+        <img id="chokonamaImage" src="" alt="ちょこなま" />
+      </div>
+      <div class="hero-actions">
+        <a class="btn primary" href="#quiz">診断する</a>
+        <a class="btn pink" href="#frame">フレームをもらう</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section" id="quiz">
+      <span class="wash one" aria-hidden="true"></span>
+      <div class="wrap">
+        <div class="label">Crepe Fortune</div>
+        <h2>4問のクレープ心理診断</h2>
+        <p class="lead">屋台の灯り、紙袋の手ざわり、チョコの香り。直感で選ぶだけで、12種類のクレープカードから今日の一枚が出てきます。</p>
+        <img class="quiz-banner" id="quizTitleImage" src="" alt="クレープ心理診断 今のあなたにぴったりなクレープは？" />
+
+        <div class="paper" id="quizBox" aria-live="polite">
+          <div class="quiz-top">
+            <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+            <div class="count" id="questionCount">1 / 4</div>
+          </div>
+          <p class="question" id="questionText"></p>
+          <div class="choices" id="choices"></div>
+        </div>
+
+        <div class="result" id="resultPanel">
+          <div class="result-card">
+            <img id="resultImage" src="" alt="" />
+            <div class="result-copy">
+              <p class="result-name" id="resultName"></p>
+              <p id="resultText"></p>
+              <p class="note">スクショしてお持ち帰りしてね。</p>
+            </div>
+          </div>
+          <div class="result-actions">
+            <button class="btn primary" type="button" id="retryBtn">もう一度診断する</button>
+            <a class="btn blue" href="#article">チョコの未来を読む</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section" aria-label="今日できること">
-      <img class="section-image" data-asset="todayMenu" alt="今日できること。クレープ心理診断、おはなし、フレームの案内">
-    </section>
-
-    <section class="section" id="quiz" aria-labelledby="quiz-title">
-      <h2 id="quiz-title" class="hidden">クレープ心理診断</h2>
-      <img class="quiz-heading-image" data-asset="quizBanner" alt="クレープ心理診断。今のあなたにぴったりなクレープは？">
-      <div class="paper-card quiz" id="quizCard">
-        <p class="progress" id="progress">1 / 4</p>
-        <h3 class="question" id="questionText"></h3>
-        <div class="choices" id="choices"></div>
-      </div>
-
-      <div class="result" id="result" aria-live="polite">
-        <div class="result-image-wrap">
-          <img class="result-image" id="resultImage" alt="">
-          <div class="image-fallback" id="resultFallback"></div>
-        </div>
-        <h3 id="resultTitle"></h3>
-        <p class="copy">スクショしてお持ち帰りしてね。今日の気分のチョコクレープです。</p>
-        <div class="actions">
-          <button class="btn btn-primary" type="button" id="retryButton">もう一度診断する</button>
-          <a class="btn" href="#article">チョコの記事も読む</a>
+    <section class="section soft-blue" id="article">
+      <div class="wrap">
+        <div class="label">Substack Letter</div>
+        <h2>チョコの未来について</h2>
+        <div class="paper article">
+          <div class="article-visual">
+            <img id="articleImage" src="" alt="チョコの未来についての記事イメージ" />
+          </div>
+          <div>
+            <p class="lead">甘いだけでは終わらない、チョコのこれから。診断の余韻のまま、HANAがSubstackに書いた小さな未来の話へどうぞ。</p>
+            <div class="share-row">
+              <a class="btn primary" id="articleLink" href="#" target="_blank" rel="noopener">記事を読む</a>
+            </div>
+            <p class="note">リンクは `LINKS.substackArticle` で差し替えできます。</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="article" aria-labelledby="article-title">
-      <article class="article">
-        <img class="article-visual" data-asset="articleVisual" alt="チョコを愛しすぎた私が、チョコの未来を考えました">
-        <h2 id="article-title">チョコを愛しすぎた私が、チョコの未来を考えました</h2>
-        <p>大好きなチョコレートを、これからも大好きでいるために。児童労働やフェアトレード、カカオ農家さんのことを、HANAなりに調べて書きました。</p>
-        <a class="btn" id="articleLink" href="#" target="_blank" rel="noreferrer">記事を読む</a>
-      </article>
-    </section>
+    <section class="section" id="frame">
+      <span class="wash two" aria-hidden="true"></span>
+      <div class="wrap">
+        <div class="label">Festival Frame</div>
+        <h2>夏祭りフレーム素材</h2>
+        <p class="lead">HANA・オカン・ちょこなま入りの夏祭りフレーム。素材を配布しつつ、この場で画像を重ねて持ち帰れるようにしました。</p>
 
-    <section class="section" id="gifts" aria-labelledby="gifts-title">
-      <h2 id="gifts-title">夏祭り素材をお持ち帰り</h2>
-      <p class="copy">透過された夏祭りフレームをダウンロードしてお持ち帰りいただけます！SNSアイコンや写真と組み合わせて、記念画像づくりに使えます。</p>
-      <div class="asset-grid" aria-label="素材プレビュー">
-        <figure class="asset-figure"><img data-asset="frameTransparent" alt="夏祭りフレーム素材"></figure>
-      </div>
-      <div class="download-list">
-        <a class="btn" data-download="frameTransparent" download="hana-crepe-frame.png">夏祭りフレームをダウンロード</a>
-      </div>
-    </section>
+        <div class="goodies" id="goodies"></div>
 
-    <section class="section" aria-labelledby="maker-title">
-      <h2 id="maker-title">顔はめ合成コーナー</h2>
-      <div class="paper-card maker">
-        <div class="maker-controls">
-          <label class="file-label">
-            アイコン画像を選ぶ
-            <input id="photoInput" type="file" accept="image/*">
-          </label>
-          <label class="select-label">
-            背景
-            <select id="backgroundSelect">
-              <option value="cream">淡いクリーム</option>
-              <option value="transparent">透明</option>
-            </select>
-          </label>
-        </div>
-        <canvas id="frameCanvas" width="1080" height="1350" aria-label="夏祭りフレーム合成プレビュー"></canvas>
-        <p class="note">画像はサーバーに送らず、このブラウザ内だけで合成します。</p>
-        <div class="actions">
-          <button class="btn btn-primary" type="button" id="downloadCanvas">完成画像をダウンロード</button>
+        <div class="paper composer" aria-label="画像合成">
+          <div class="controls">
+            <label class="field">
+              写真を選ぶ
+              <input id="photoInput" type="file" accept="image/*" />
+            </label>
+            <label class="field">
+              フレーム
+              <select id="frameSelect"></select>
+            </label>
+            <button class="btn primary" id="downloadBtn" type="button">合成画像を保存</button>
+            <p class="note">写真はブラウザ内だけで合成します。アップロード送信はしません。</p>
+          </div>
+          <div class="canvas-shell">
+            <canvas id="frameCanvas" width="1080" height="1350" aria-label="合成プレビュー"></canvas>
+          </div>
         </div>
       </div>
     </section>
-
-    <footer>
-      <strong>1日限定 HANAcrepe 夏祭り店</strong>
-      甘いだけじゃない、チョコの未来も少しだけ考えるクレープ屋さん。
-    </footer>
   </main>
 
+  <footer class="footer">
+    <div class="wrap">HANAcrepe 夏祭り店 / オカンと楽しむSubstack夏祭り</div>
+  </footer>
+
   <script>
-    // 画像差し替え場所
+    const svgUrl = (svg) => "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+
+    const crepeCard = (title, color, accent) => svgUrl(`
+      <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1600" viewBox="0 0 1200 1600">
+        <defs>
+          <filter id="paper"><feTurbulence type="fractalNoise" baseFrequency=".025" numOctaves="3" seed="7"/><feColorMatrix type="saturate" values=".08"/><feComponentTransfer><feFuncA type="table" tableValues="0 .18"/></feComponentTransfer></filter>
+        </defs>
+        <rect width="1200" height="1600" rx="48" fill="#fff8e8"/>
+        <rect x="42" y="42" width="1116" height="1516" rx="38" fill="${color}" opacity=".38"/>
+        <rect width="1200" height="1600" filter="url(#paper)" opacity=".48"/>
+        <path d="M170 1110 C320 770 500 540 695 408 C805 548 890 742 1030 1110 Z" fill="#f4d196" stroke="#765040" stroke-width="14"/>
+        <path d="M330 870 C470 790 610 790 760 875 C650 930 485 940 330 870 Z" fill="#fffdf5" stroke="#765040" stroke-width="10"/>
+        <path d="M420 805 C490 685 615 660 700 780" fill="none" stroke="${accent}" stroke-width="30" stroke-linecap="round"/>
+        <circle cx="440" cy="680" r="38" fill="#eeb6bf"/>
+        <circle cx="730" cy="700" r="34" fill="#b9ddea"/>
+        <path d="M168 240 C270 170 410 190 500 248 C630 330 760 210 900 245" fill="none" stroke="${accent}" stroke-width="12" stroke-linecap="round" opacity=".78"/>
+        <text x="600" y="1380" text-anchor="middle" font-family="serif" font-size="72" fill="#5c3f34">${title}</text>
+        <text x="600" y="1462" text-anchor="middle" font-family="sans-serif" font-size="32" fill="#8b6759">HANAcrepe 夏祭り店</text>
+      </svg>
+    `);
+
+    const frameSvg = (title, base, accent) => svgUrl(`
+      <svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+        <rect width="1080" height="1080" fill="none"/>
+        <rect x="26" y="26" width="1028" height="1028" rx="44" fill="none" stroke="${base}" stroke-width="52"/>
+        <rect x="70" y="70" width="940" height="940" rx="28" fill="none" stroke="#fff8e8" stroke-width="18" stroke-dasharray="18 22"/>
+        <circle cx="142" cy="128" r="38" fill="${accent}"/>
+        <circle cx="940" cy="136" r="34" fill="#b9ddea"/>
+        <circle cx="158" cy="934" r="34" fill="#dbeacd"/>
+        <path d="M302 80 C420 150 620 18 792 92" fill="none" stroke="${accent}" stroke-width="16" stroke-linecap="round"/>
+        <text x="540" y="1006" text-anchor="middle" font-family="serif" font-size="42" fill="#5c3f34">${title}</text>
+        <text x="540" y="82" text-anchor="middle" font-family="sans-serif" font-size="28" fill="#5c3f34">HANA / オカン / ちょこなま</text>
+      </svg>
+    `);
+
     const ASSETS = {
-      hero: "images/banner.png",
-      todayMenu: "images/today-menu.png",
-      quizBanner: "images/quiz-banner.png",
-      hanaNormal: "images/hana-normal.png",
-      hanaCrepe: "images/hana-crepe.png",
-      hanaCooking: "images/hana-cooking.png",
-      choconamaNormal: "images/choconama-normal.png",
-      choconamaWave: "images/choconama-wave.png",
-      choconamaOpenArms: "images/choconama-open-arms.png",
-      frameTransparent: "images/frame-transparent.png",
-      crepeCards: {
-        reward: "images/card-reward.png",
-        caramel: "images/card-caramel.png",
-        milk: "images/card-milk.png",
-        strawberry: "images/card-strawberry.png",
-        bitterNight: "images/card-bitter-night.png",
-        adultBitter: "images/card-adult-bitter.png",
-        starBanana: "images/card-star-banana.png",
-        fruit: "images/card-fruit.png",
-        crunchy: "images/card-crunchy.png",
-        white: "images/card-white.png",
-        fairtrade: "images/card-fairtrade.png",
-        special: "images/card-special.png"
+      hero: "assets/hana-cooking.png",
+      heroSign: "assets/hero-sign.png",
+      quizTitle: "assets/quiz-title.png",
+      article: "assets/substack-chocolate.png",
+      characters: {
+        hanaCrepe: "assets/hana-crepe.png",
+        chokonama: "assets/chokonama-03.png"
       },
-      articleVisual: "images/chocolate-article.png"
+      resultCards: [
+        "assets/crepe-card-01.png",
+        "assets/crepe-card-02.png",
+        "assets/crepe-card-03.png",
+        "assets/crepe-card-04.png",
+        "assets/crepe-card-05.png",
+        "assets/crepe-card-06.png",
+        "assets/crepe-card-07.png",
+        "assets/crepe-card-08.png",
+        "assets/crepe-card-09.png",
+        "assets/crepe-card-10.png",
+        "assets/crepe-card-11.png",
+        "assets/crepe-card-12.png"
+      ],
+      frames: [
+        {
+          name: "HANA・オカン・ちょこなま入り夏祭りフレーム",
+          url: "assets/festival-frame.png",
+          width: 1080,
+          height: 1350
+        }
+      ]
     };
 
-    // リンク差し替え場所
     const LINKS = {
-      substackArticle: "https://example.com"
-    };
-
-    const RESULTS = {
-      reward: "まるごとごほうびチョコクレープ",
-      caramel: "冒険キャラメルチョコクレープ",
-      milk: "やさしさミルクチョコクレープ",
-      strawberry: "夏祭りいちごチョコクレープ",
-      bitterNight: "夜空のビターチョコクレープ",
-      adultBitter: "ほろにが大人チョコクレープ",
-      starBanana: "星花バナナチョコクレープ",
-      fruit: "おはな畑フルーツクレープ",
-      crunchy: "サクサク青春チョコクレープ",
-      white: "そっと寄り添うホワイトチョコクレープ",
-      fairtrade: "フェアトレードチョコクレープ",
-      special: "HANAスペシャル・愛しすぎチョコクレープ"
+      substackArticle: "https://example.com/substack-chocolate-future",
+      frameDownloads: [
+        "assets/festival-frame.png"
+      ]
     };
 
     const QUESTIONS = [
       {
-        text: "Q1. 今の気分に近いのは？",
+        text: "夏祭りで最初に向かうなら？",
         choices: [
-          { label: "とにかく甘やかされたい", tags: ["reward", "milk", "special"] },
-          { label: "少し静かに落ち着きたい", tags: ["bitterNight", "adultBitter", "white"] },
-          { label: "わくわく楽しいことがしたい", tags: ["caramel", "strawberry", "crunchy"] },
-          { label: "やさしい気持ちで過ごしたい", tags: ["milk", "fairtrade", "fruit"] }
+          { text: "甘い香りのクレープ屋さん", score: 0 },
+          { text: "涼しげなラムネの屋台", score: 1 },
+          { text: "灯りがきれいな提灯通り", score: 3 }
         ]
       },
       {
-        text: "Q2. 惹かれる夏祭りの景色は？",
+        text: "クレープに足すなら？",
         choices: [
-          { label: "にぎやかな屋台", tags: ["strawberry", "crunchy", "caramel"] },
-          { label: "夜空と花火", tags: ["bitterNight", "starBanana", "adultBitter"] },
-          { label: "灯りのともる帰り道", tags: ["white", "milk", "fairtrade"] },
-          { label: "友達や仲間と笑う時間", tags: ["fruit", "reward", "special"] }
+          { text: "とろりチョコ", score: 4 },
+          { text: "きゅんと甘酸っぱい果物", score: 6 },
+          { text: "さくさくナッツ", score: 8 }
         ]
       },
       {
-        text: "Q3. 今日ほしい甘さは？",
+        text: "今日の気分に近いものは？",
         choices: [
-          { label: "濃厚チョコ", tags: ["reward", "special", "adultBitter"] },
-          { label: "ほろにがチョコ", tags: ["adultBitter", "bitterNight", "fairtrade"] },
-          { label: "フルーツの甘酸っぱさ", tags: ["fruit", "strawberry", "starBanana"] },
-          { label: "まろやかミルク・ホワイト系", tags: ["milk", "white", "caramel"] }
+          { text: "わいわい楽しみたい", score: 2 },
+          { text: "少しだけ夢見心地", score: 9 },
+          { text: "静かに味わいたい", score: 5 }
         ]
       },
       {
-        text: "Q4. 今のあなたに必要なのは？",
+        text: "お持ち帰りしたい夏の記憶は？",
         choices: [
-          { label: "ごほうび", tags: ["reward", "special", "white"] },
-          { label: "冒険", tags: ["caramel", "starBanana", "crunchy"] },
-          { label: "癒やし", tags: ["milk", "white", "bitterNight"] },
-          { label: "つながり", tags: ["fairtrade", "fruit", "strawberry"] }
+          { text: "花火のきらめき", score: 0 },
+          { text: "紙もののかわいさ", score: 10 },
+          { text: "特別なチョコの余韻", score: 11 }
         ]
       }
     ];
 
-    const quizCard = document.getElementById("quizCard");
-    const questionText = document.getElementById("questionText");
-    const choices = document.getElementById("choices");
-    const progress = document.getElementById("progress");
-    const result = document.getElementById("result");
-    const resultImage = document.getElementById("resultImage");
-    const resultFallback = document.getElementById("resultFallback");
-    const resultTitle = document.getElementById("resultTitle");
-    const retryButton = document.getElementById("retryButton");
+    const RESULTS = [
+      ["夜空のビターチョコクレープ", "静かな夜空みたいに、深く味わえるタイプ。ひとりの時間に浮かんだひらめきが、次のチョコをもっとおいしくします。"],
+      ["ほろにが大人チョコクレープ", "甘さの奥に、ちゃんと自分の芯があるタイプ。少し背伸びした選択が、今日の余韻をきれいに残します。"],
+      ["やさしさミルクチョコクレープ", "まわりをふんわり包む、安心感のあるタイプ。やさしい一言が、自分にも甘いごほうびとして返ってきます。"],
+      ["夏祭りいちごチョコクレープ", "ぱっと場を明るくする、夏祭りの主役タイプ。迷ったら楽しいほうへ進むと、今日のチョコがもっと甘くなります。"],
+      ["冒険キャラメルチョコクレープ", "新しい屋台をのぞくみたいに、未知を楽しめるタイプ。小さな寄り道に、思いがけない当たりがあります。"],
+      ["まるごとごほうびチョコクレープ", "がんばった自分をちゃんと甘やかせるタイプ。今日は遠慮せず、好きなものをひとつ選んで大丈夫です。"],
+      ["そっと寄り添うホワイトチョコクレープ", "言葉少なでも、そばにいるだけであたたかいタイプ。静かな気配りが、夏の記憶をやわらかくします。"],
+      ["おはな畑フルーツクレープ", "色とりどりの感性で世界を見るタイプ。かわいいと思ったものを集めるほど、気持ちが明るく整います。"],
+      ["星粒バナナチョコクレープ", "親しみやすさの中に、きらっとした個性があるタイプ。いつもの自分を大事にすると、いい出会いが寄ってきます。"],
+      ["サクサク青春チョコクレープ", "軽やかな勢いで場を動かすタイプ。完璧を待つより、まず一口かじってみるのが今日の吉です。"],
+      ["愛しすぎチョコクレープ", "好きの気持ちをまっすぐ抱きしめる特別タイプ。大切なものを大切と言える強さが、あなたの魅力です。"],
+      ["フェアトレードチョコクレープ", "甘さの先の未来まで想像できるタイプ。気になる記事を読んで、次の一口を選びにいきましょう。"]
+    ];
+
+    document.documentElement.style.setProperty("--hero-image", `url("${ASSETS.hero}")`);
+    document.getElementById("heroSign").src = ASSETS.heroSign;
+    document.getElementById("quizTitleImage").src = ASSETS.quizTitle;
+    document.getElementById("hanaCrepeImage").src = ASSETS.characters.hanaCrepe;
+    document.getElementById("chokonamaImage").src = ASSETS.characters.chokonama;
+    document.getElementById("articleImage").src = ASSETS.article;
+    document.getElementById("articleLink").href = LINKS.substackArticle;
+
     let step = 0;
-    let scores = {};
+    let scores = [];
 
-    function setAssetImages() {
-      document.querySelectorAll("[data-asset]").forEach((image) => {
-        const key = image.dataset.asset;
-        if (ASSETS[key]) {
-          image.src = ASSETS[key];
-          image.onerror = () => {
-            image.hidden = true;
-          };
-        }
-      });
-
-      document.querySelectorAll("[data-download]").forEach((link) => {
-        const key = link.dataset.download;
-        link.href = ASSETS[key] || "#";
-      });
-
-      document.getElementById("articleLink").href = LINKS.substackArticle;
-    }
+    const qText = document.getElementById("questionText");
+    const choices = document.getElementById("choices");
+    const count = document.getElementById("questionCount");
+    const bar = document.getElementById("progressBar");
+    const resultPanel = document.getElementById("resultPanel");
+    const quizBox = document.getElementById("quizBox");
 
     function renderQuestion() {
-      const question = QUESTIONS[step];
-      progress.textContent = `${step + 1} / ${QUESTIONS.length}`;
-      questionText.textContent = question.text;
+      const q = QUESTIONS[step];
+      qText.textContent = q.text;
+      count.textContent = `${step + 1} / ${QUESTIONS.length}`;
+      bar.style.width = `${(step / QUESTIONS.length) * 100}%`;
       choices.innerHTML = "";
-
-      question.choices.forEach((choice) => {
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = "choice";
-        button.textContent = choice.label;
-        button.setAttribute("aria-label", `${question.text} ${choice.label}`);
-        button.addEventListener("click", () => answer(choice.tags));
-        choices.appendChild(button);
+      q.choices.forEach((choice) => {
+        const btn = document.createElement("button");
+        btn.className = "choice";
+        btn.type = "button";
+        btn.textContent = choice.text;
+        btn.addEventListener("click", () => selectChoice(choice.score));
+        choices.appendChild(btn);
       });
     }
 
-    function answer(tags) {
-      tags.forEach((tag) => {
-        scores[tag] = (scores[tag] || 0) + 1;
-      });
-
+    function selectChoice(score) {
+      scores.push(score);
       step += 1;
-      if (step < QUESTIONS.length) {
-        renderQuestion();
-      } else {
-        showResult();
-      }
-    }
-
-    function pickResult() {
-      if ((scores.special || 0) >= 3 && (scores.reward || 0) >= 2) {
-        return "special";
-      }
-
-      const keys = Object.keys(RESULTS).filter((key) => key !== "special");
-      return keys.reduce((winner, key) => {
-        return (scores[key] || 0) > (scores[winner] || 0) ? key : winner;
-      }, keys[0]);
+      if (step >= QUESTIONS.length) return showResult();
+      renderQuestion();
     }
 
     function showResult() {
-      const key = pickResult();
-      const title = RESULTS[key];
-      quizCard.classList.add("hidden");
-      result.classList.add("is-visible");
-      resultTitle.textContent = title;
-      resultImage.alt = `${title}の診断結果カード`;
-      resultImage.src = ASSETS.crepeCards[key];
-      resultFallback.textContent = `${title}。画像を差し替えると、ここに診断カードが表示されます。`;
-      resultFallback.classList.remove("is-visible");
-      resultImage.hidden = false;
-      resultImage.onerror = () => {
-        resultImage.hidden = true;
-        resultFallback.classList.add("is-visible");
-      };
-      result.scrollIntoView({ behavior: "smooth", block: "start" });
+      const index = scores.reduce((sum, value) => sum + value, 0) % RESULTS.length;
+      const [name, text] = RESULTS[index];
+      bar.style.width = "100%";
+      quizBox.style.display = "none";
+      document.getElementById("resultImage").src = ASSETS.resultCards[index];
+      document.getElementById("resultImage").alt = `${name}の診断結果カード`;
+      document.getElementById("resultName").textContent = name;
+      document.getElementById("resultText").textContent = text;
+      resultPanel.classList.add("show");
+      resultPanel.scrollIntoView({ behavior: "smooth", block: "center" });
     }
 
-    function resetQuiz() {
+    document.getElementById("retryBtn").addEventListener("click", () => {
       step = 0;
-      scores = {};
-      quizCard.classList.remove("hidden");
-      result.classList.remove("is-visible");
+      scores = [];
+      resultPanel.classList.remove("show");
+      quizBox.style.display = "block";
       renderQuestion();
-      quizCard.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
+      quizBox.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+
+    renderQuestion();
+
+    const goodies = document.getElementById("goodies");
+    const frameSelect = document.getElementById("frameSelect");
+    ASSETS.frames.forEach((frame, index) => {
+      const item = document.createElement("article");
+      item.className = "goodie";
+      item.innerHTML = `
+        <img src="${frame.url}" alt="${frame.name}のフレーム素材">
+        <div>
+          <h3>${frame.name}</h3>
+          <p>透明PNGのフレーム素材です。下の合成でもそのまま使えます。</p>
+          <a class="btn pink" href="${(LINKS.frameDownloads[index] && !LINKS.frameDownloads[index].startsWith("#")) ? LINKS.frameDownloads[index] : frame.url}" download>素材をもらう</a>
+        </div>
+      `;
+      goodies.appendChild(item);
+
+      const option = document.createElement("option");
+      option.value = String(index);
+      option.textContent = frame.name;
+      frameSelect.appendChild(option);
+    });
 
     const canvas = document.getElementById("frameCanvas");
     const ctx = canvas.getContext("2d");
     const photoInput = document.getElementById("photoInput");
-    const backgroundSelect = document.getElementById("backgroundSelect");
-    const downloadCanvas = document.getElementById("downloadCanvas");
+    const downloadBtn = document.getElementById("downloadBtn");
     let userImage = null;
-    const frameImage = new Image();
 
-    function drawCoverImage(image, x, y, width, height) {
-      const ratio = Math.max(width / image.width, height / image.height);
-      const sw = width / ratio;
-      const sh = height / ratio;
-      const sx = (image.width - sw) / 2;
-      const sy = (image.height - sh) / 2;
-      ctx.drawImage(image, sx, sy, sw, sh, x, y, width, height);
+    function drawCover(img, x, y, w, h) {
+      const scale = Math.max(w / img.width, h / img.height);
+      const nw = img.width * scale;
+      const nh = img.height * scale;
+      ctx.drawImage(img, x + (w - nw) / 2, y + (h - nh) / 2, nw, nh);
     }
 
-    function drawCanvas() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    function loadImage(src) {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.onload = () => resolve(img);
+        img.src = src;
+      });
+    }
 
-      if (backgroundSelect.value === "cream") {
-        ctx.fillStyle = "#fff8ee";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-      }
+    async function renderCanvas() {
+      const selectedFrame = ASSETS.frames[Number(frameSelect.value)];
+      canvas.width = selectedFrame.width;
+      canvas.height = selectedFrame.height;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#fff8e8";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       if (userImage) {
-        ctx.save();
-        const x = 220;
-        const y = 340;
-        const size = 640;
-        const radius = 80;
-        ctx.beginPath();
-        ctx.moveTo(x + radius, y);
-        ctx.arcTo(x + size, y, x + size, y + size, radius);
-        ctx.arcTo(x + size, y + size, x, y + size, radius);
-        ctx.arcTo(x, y + size, x, y, radius);
-        ctx.arcTo(x, y, x + size, y, radius);
-        ctx.closePath();
-        ctx.clip();
-        drawCoverImage(userImage, x, y, size, size);
-        ctx.restore();
+        drawCover(userImage, 0, 0, canvas.width, canvas.height);
       } else {
-        ctx.fillStyle = "rgba(255, 253, 248, 0.86)";
-        ctx.fillRect(220, 340, 640, 640);
-        ctx.fillStyle = "#8a6652";
+        ctx.fillStyle = "#f7dfe3";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#5c3f34";
         ctx.textAlign = "center";
-        ctx.font = "48px sans-serif";
-        ctx.fillText("ここに画像が入ります", 540, 680);
+        ctx.font = "42px sans-serif";
+        ctx.fillText("写真を選んでね", canvas.width / 2, canvas.height / 2);
       }
 
-      if (frameImage.complete && frameImage.naturalWidth) {
-        ctx.drawImage(frameImage, 0, 0, canvas.width, canvas.height);
-      }
+      const frame = await loadImage(selectedFrame.url);
+      ctx.drawImage(frame, 0, 0, canvas.width, canvas.height);
     }
 
-    function loadUserImage(file) {
+    photoInput.addEventListener("change", () => {
+      const file = photoInput.files && photoInput.files[0];
       if (!file) return;
       const reader = new FileReader();
       reader.onload = () => {
-        const image = new Image();
-        image.onload = () => {
-          userImage = image;
-          drawCanvas();
+        const img = new Image();
+        img.onload = () => {
+          userImage = img;
+          renderCanvas();
         };
-        image.src = reader.result;
+        img.src = reader.result;
       };
       reader.readAsDataURL(file);
-    }
-
-    photoInput.addEventListener("change", (event) => {
-      loadUserImage(event.target.files[0]);
     });
 
-    backgroundSelect.addEventListener("change", drawCanvas);
+    frameSelect.addEventListener("change", renderCanvas);
 
-    downloadCanvas.addEventListener("click", () => {
+    downloadBtn.addEventListener("click", () => {
       const link = document.createElement("a");
-      link.download = "hana-crepe-natsumatsuri.png";
+      link.download = "hanacrepe-summer-frame.png";
       link.href = canvas.toDataURL("image/png");
       link.click();
     });
 
-    frameImage.onload = drawCanvas;
-    frameImage.onerror = drawCanvas;
-    frameImage.src = ASSETS.frameTransparent;
-
-    retryButton.addEventListener("click", resetQuiz);
-    setAssetImages();
-    renderQuestion();
-    drawCanvas();
+    renderCanvas();
   </script>
 </body>
 </html>
